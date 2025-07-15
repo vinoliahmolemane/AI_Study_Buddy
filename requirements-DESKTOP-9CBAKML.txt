@@ -1,0 +1,7 @@
+streamlit
+streamlit-webrtc
+cohere
+python-dotenv
+requests
+pyttsx3
+soundfile

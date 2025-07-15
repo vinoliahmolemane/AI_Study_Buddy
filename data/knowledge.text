@@ -1,0 +1,15 @@
+knowledge_texts = [
+    "Artificial Intelligence (AI) is a branch of computer science that aims to create machines capable of intelligent behavior. AI systems can learn from data, recognize patterns, and make decisions.",
+    
+    "Machine Learning is a subset of AI that enables systems to learn and improve from experience without being explicitly programmed. It uses algorithms to find patterns in data.",
+    
+    "Natural Language Processing (NLP) allows computers to understand, interpret, and generate human language. Applications include chatbots, translation, and sentiment analysis.",
+    
+    "Deep Learning is a specialized form of machine learning using neural networks with many layers. It is highly effective for tasks like image recognition and speech processing.",
+    
+    "Data Science combines statistics, computer science, and domain knowledge to extract insights from data. It involves data cleaning, visualization, and predictive modeling.",
+    
+    "Ethics in AI is critical to ensure that AI systems are fair, transparent, and do not reinforce biases. Responsible AI development requires ongoing monitoring and regulation.",
+    
+    "Cloud computing provides scalable resources and infrastructure for deploying AI models and handling large datasets in a flexible, cost-efficient manner."
+]

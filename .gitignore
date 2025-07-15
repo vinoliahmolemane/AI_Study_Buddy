@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+chat_log.db
+audio_outputs/
+transcripts/

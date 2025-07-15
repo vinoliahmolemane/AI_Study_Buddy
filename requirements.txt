@@ -1,0 +1,17 @@
+streamlit
+cohere
+openai
+whisper
+gtts
+torch
+torchaudio
+ffmpeg-python
+streamlit
+cohere
+pyttsx3
+requests
+python-dotenv
+streamlit-webrtc
+numpy
+soundfile
+s

@@ -1,0 +1,5 @@
+These notes indicate that the knowledge base is empty and prompts you to add content to data/knowledge_base.txt. It seems to be a warning or reminder to populate the knowledge base with information before attempting to use it. 
+```
+It would be great if you could share the specific content of the knowledge base (e.g., text file) so I can provide a more accurate and detailed summary if needed. 
+``` 
+Let me know if there's anything else I can help you with!

@@ -7,16 +7,19 @@ import cohere
 import pyttsx3
 import tempfile
 
+# Load environment variables
 load_dotenv()
 
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
 
+# Validate API keys
 if not COHERE_API_KEY:
     raise ValueError("❌ Please set your COHERE_API_KEY environment variable.")
 if not ASSEMBLYAI_API_KEY:
     raise ValueError("❌ Please set your ASSEMBLYAI_API_KEY environment variable.")
 
+# Cohere client
 co = cohere.Client(COHERE_API_KEY)
 
 # Default fallback knowledge
@@ -36,12 +39,10 @@ def transcribe_audio(audio_file):
         headers = {'authorization': ASSEMBLYAI_API_KEY}
         upload_url = 'https://api.assemblyai.com/v2/upload'
 
-        # Upload audio file
         with open(audio_file, 'rb') as f:
             response = requests.post(upload_url, headers=headers, files={'file': f})
         audio_url = response.json()['upload_url']
 
-        # Start transcription
         transcript_request = {
             'audio_url': audio_url,
             'language_code': 'en',
@@ -54,7 +55,6 @@ def transcribe_audio(audio_file):
         )
         transcript_id = transcript_response.json()['id']
 
-        # Polling for completion
         polling_url = f'https://api.assemblyai.com/v2/transcript/{transcript_id}'
         while True:
             poll_response = requests.get(polling_url, headers=headers).json()
@@ -80,7 +80,6 @@ def generate_response(user_input: str) -> str:
 
 def text_to_speech_pyttsx3(text: str, output_file: str = None):
     """Convert text to speech using pyttsx3 locally. Skipped on Streamlit Cloud."""
-    # Skip on Streamlit Cloud
     if "STREAMLIT_SERVER_RUN_ON_SAVE" in os.environ:
         return None
 
@@ -122,10 +121,7 @@ def save_chat_log(user_input: str, response: str, db_path: str = "chat_log.db"):
         print(f"❌ Error saving chat log: {e}")
 
 def load_knowledge_base(file_path: str):
-    """
-    Load knowledge base text from file.
-    If file is missing or empty, return the built-in knowledge_texts joined as string.
-    """
+    """Load knowledge base text from file or return fallback if not available."""
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read().strip()

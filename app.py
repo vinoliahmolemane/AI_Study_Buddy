@@ -72,13 +72,13 @@ if page == "AI Study Buddy 🤖":
                 st.session_state.history.append(("You", question))
                 st.session_state.history.append(("AI", response))
                 save_chat_log(question, response)
-                st.rerun()  # ✅ FIXED
+                st.rerun()
             except Exception as e:
                 st.error(f"❌ Error generating response: {e}")
 
     if st.button("🗑️ Clear Chat History"):
         st.session_state.history = []
-        st.rerun()  # ✅ FIXED
+        st.rerun()
 
     if st.session_state.history:
         st.markdown("### 💬 Chat History")
@@ -142,7 +142,10 @@ elif page == "Accessibility Tool 🎧":
         else:
             try:
                 audio_data = text_to_speech_pyttsx3(tts_text)
-                st.audio(audio_data, format="audio/wav")
+                if audio_data:
+                    st.audio(audio_data, format="audio/wav")
+                else:
+                    st.warning("⚠️ Text-to-speech is not supported in this environment.")
             except Exception as e:
                 st.error(f"❌ Error generating audio: {e}")
 

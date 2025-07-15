@@ -72,13 +72,13 @@ if page == "AI Study Buddy 🤖":
                 st.session_state.history.append(("You", question))
                 st.session_state.history.append(("AI", response))
                 save_chat_log(question, response)
-                st.experimental_rerun()
+                st.rerun()  # ✅ FIXED
             except Exception as e:
                 st.error(f"❌ Error generating response: {e}")
 
     if st.button("🗑️ Clear Chat History"):
         st.session_state.history = []
-        st.experimental_rerun()
+        st.rerun()  # ✅ FIXED
 
     if st.session_state.history:
         st.markdown("### 💬 Chat History")

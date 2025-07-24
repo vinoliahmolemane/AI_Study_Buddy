@@ -2,9 +2,6 @@
 
 AI Study Buddy is an interactive Streamlit-based application designed to assist students with AI-powered study features such as chat, voice transcription, content generation, and more.
 
-#live demo
-https://aistudybuddy-cee3onn7hofqmbdhnuzpnh.streamlit.app/
-
 ## Features
 
 - Chat interface with memory stored in session state
@@ -34,3 +31,6 @@ pip install -r requirements.txt
 
 Run the app with Streamlit
 streamlit run app.py
+
+## live demo
+https://aistudybuddy-cee3onn7hofqmbdhnuzpnh.streamlit.app/

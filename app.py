@@ -9,7 +9,7 @@ import tempfile
 from utils import (
     transcribe_audio,
     generate_response,
-    text_to_speech_pyttsx3,
+    text_to_speech,
     save_chat_log,
     load_knowledge_base,
     generate_custom_content
@@ -134,18 +134,19 @@ elif page == "Accessibility Tool 🎧":
             st.error(f"❌ Error during transcription: {e}")
 
     st.markdown("---")
-    st.subheader("🔊 Text to Speech (Offline, WAV)")
+    st.subheader("🔊 Text to Speech (Online, MP3)")
     tts_text = st.text_area("Enter text to convert into speech:", height=150, key="accessibility_text_area")
-    if st.button("Convert to WAV"):
+
+    if st.button("Convert to Speech"):
         if not tts_text.strip():
             st.warning("⚠️ Please enter some text.")
         else:
             try:
-                audio_data = text_to_speech_pyttsx3(tts_text)
-                if audio_data:
-                    st.audio(audio_data, format="audio/wav")
+                audio_file = text_to_speech(tts_text)
+                if audio_file and not audio_file.startswith("❌"):
+                    st.audio(audio_file, format="audio/mp3")
                 else:
-                    st.warning("⚠️ Text-to-speech is not supported in this environment.")
+                    st.error(audio_file)
             except Exception as e:
                 st.error(f"❌ Error generating audio: {e}")
 

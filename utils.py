@@ -1,13 +1,12 @@
 import os
-import sqlite3
 import requests
 from datetime import datetime
-from dotenv import load_dotenv
-import cohere
-import pyttsx3
+from gtts import gTTS
 import tempfile
+import cohere
 
 # Load environment variables
+from dotenv import load_dotenv
 load_dotenv()
 
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
@@ -78,22 +77,15 @@ def generate_response(user_input: str) -> str:
     except Exception as e:
         return f"❌ Error generating response: {e}"
 
-def text_to_speech_pyttsx3(text: str, output_file: str = None):
-    """Convert text to speech using pyttsx3 locally. Skipped on Streamlit Cloud."""
-    if "STREAMLIT_SERVER_RUN_ON_SAVE" in os.environ:
-        return None
-
+def text_to_speech(text: str, output_file: str = None):
+    """Convert text to speech using Google TTS online (MP3)."""
     try:
-        engine = pyttsx3.init()
-        engine.setProperty('rate', 160)
-        engine.setProperty('volume', 0.9)
-
         if not output_file:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_file:
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp_file:
                 output_file = temp_file.name
 
-        engine.save_to_file(text, output_file)
-        engine.runAndWait()
+        tts = gTTS(text=text, lang='en')
+        tts.save(output_file)
         return output_file
     except Exception as e:
         return f"❌ Error generating audio: {e}"
@@ -101,6 +93,9 @@ def text_to_speech_pyttsx3(text: str, output_file: str = None):
 def save_chat_log(user_input: str, response: str, db_path: str = "chat_log.db"):
     """Save user input and AI response to a local SQLite database."""
     try:
+        import sqlite3
+        from datetime import datetime
+
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute('''

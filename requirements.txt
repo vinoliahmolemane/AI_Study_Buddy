@@ -5,7 +5,6 @@ gtts
 torch
 torchaudio
 ffmpeg-python
-pyttsx3
 requests
 python-dotenv
 streamlit-webrtc
@@ -13,3 +12,4 @@ numpy
 soundfile
 PyPDF2
 fpdf
+gtts

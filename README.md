@@ -10,6 +10,9 @@ AI Study Buddy is an interactive Streamlit-based application designed to assist 
 - Export chat logs and notes as PDF or text
 - Clear chat history functionality
 - Support for multiple audio formats (WAV, MP3)
+  
+# live demo
+https://aistudybuddy-cee3onn7hofqmbdhnuzpnh.streamlit.app
 
 ## Installation
 
@@ -32,5 +35,4 @@ pip install -r requirements.txt
 Run the app with Streamlit
 streamlit run app.py
 
-# live demo
-https://aistudybuddy-cee3onn7hofqmbdhnuzpnh.streamlit.app/
+

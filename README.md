@@ -32,5 +32,5 @@ pip install -r requirements.txt
 Run the app with Streamlit
 streamlit run app.py
 
-## live demo
+##live demo
 https://aistudybuddy-cee3onn7hofqmbdhnuzpnh.streamlit.app/
